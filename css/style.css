@@ -8,8 +8,41 @@
     height: 100%;
     object-fit: cover;
     position: absolute;
+    
 }
 
 section{
     padding: 2rem 0;
+}
+
+.box-btn{
+    position: absolute;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+}
+
+.box-btn-up{
+    top: 0;
+    padding-top: .5rem;
+    
+}
+
+.box-btn-down{
+    bottom: 0;
+    padding-bottom: .5rem;
+    
+}
+
+.my-btn{
+    width: 30px;
+    border-radius: 50%;
+    aspect-ratio: 1 / 1;
+    border: unset;
+    z-index: 2;
+}
+.my-btn:hover{
+    background-color: red;
 }

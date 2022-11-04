@@ -33,13 +33,13 @@ for(let i=0;i<images.length;i++){
 //************************************************************** */
 //EVENTI
 btnUpEl.addEventListener("click",function(){
-    const oldImage=document.querySelector(".img-box .d-block");
-    let newImage=document.querySelector(`.img-box .d-block + .d-none`);
-    if(newImage===null){
-        
-        newImage=document.querySelector(".img-box :nth-child(3)");
-        
-    }
+    
+    const oldImage=document.querySelector(`.img-box :nth-child(${})`);
+    
+    const newImage=document.querySelector(`.img-box :nth-child(${})`);
+    indice++;
+    
+    
     oldImage.classList.remove("d-block");
     oldImage.classList.add("d-none");
     newImage.classList.remove("d-none");
@@ -53,13 +53,9 @@ btnUpEl.addEventListener("click",function(){
 })
 
 btnDownEl.addEventListener("click",function(){
-    const oldImage=document.querySelector(".img-box .d-block");
-    let newImage=document.querySelector(`.img-box .d-block + .d-none`);
-    if(newImage===null){
-        
-        newImage=document.querySelector(".img-box :nth-child(3)");
-        
-    }
+    const oldImage=document.querySelector(`.img-box :nth-child(${(indice-1)%images.length+1})`);
+    let newImage=document.querySelector(`.img-box :nth-child(${(indice-2)%images.length+1})`);
+    indice--;
     oldImage.classList.remove("d-block");
     oldImage.classList.add("d-none");
     newImage.classList.remove("d-none");

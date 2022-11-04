@@ -63,9 +63,22 @@ btnUpEl.addEventListener("click", function () {
 })
 
 btnDownEl.addEventListener("click", function () {
-    const oldImage = document.querySelector(`.img-box :nth-child(${(indice - 1) % images.length + 1})`);
-    let newImage = document.querySelector(`.img-box :nth-child(${(indice - 2) % images.length + 1})`);
     indice--;
+    let oldImage;
+    let newImage;
+    if (indice === images.length) {
+        let indice1=1;
+        let indice2=images.length;
+         oldImage = document.querySelector(`.img-box :nth-child(${indice2})`);
+         newImage = document.querySelector(`.img-box :nth-child(${indice1})`);
+         indice=0;
+    }
+    else {
+        oldImage= document.querySelector(`.img-box :nth-child(${indice})`);
+        newImage = document.querySelector(`.img-box :nth-child(${indice + 1})`);
+    }
+
+
     oldImage.classList.remove("d-block");
     oldImage.classList.add("d-none");
     newImage.classList.remove("d-none");

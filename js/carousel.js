@@ -7,6 +7,7 @@ const images = [
 ]
 const imagesEl = [];
 const divAnteprime = [];
+const anteprime=[];
 const boxImagesEl = document.querySelector(".carosel-box");
 const btnUpEl = document.querySelector(".btn-up");
 const btnDownEl = document.querySelector(".btn-down");
@@ -38,12 +39,13 @@ for (let i = 0; i < images.length; i++) {
     anteprimaEl.classList.add( "anteprima-img");
     if (i === indice) {
         divEffect.classList.add("effetto-anteprima");
+        anteprimaEl.classList.add("border-blue")
     }
     container.style.height = `calc( 100% / ${images.length} )`;
 
     anteprimaEl.alt = "";
     divAnteprime[i] = divEffect;
-    
+    anteprime[i]=anteprimaEl;
     container.append(anteprimaEl)
     container.append(divEffect);
     anteprimaImg.append(container)
@@ -59,7 +61,8 @@ for (let i = 0; i < images.length; i++) {
 //************************************************************** */
 //EVENTI
 btnDownEl.addEventListener("click", function () {
-
+    let oldbord;
+    let newbord;
     let oldAnteprima;
     let newAnteprima;
     let oldImage;
@@ -69,6 +72,8 @@ btnDownEl.addEventListener("click", function () {
         oldImage = imagesEl[images.length - 1];
         oldAnteprima = divAnteprime[images.length - 1];
         newAnteprima = divAnteprime[0];
+        oldbord=anteprime[images.length - 1];
+        newbord=anteprime[0];
         indice = -1;
     }
     else {
@@ -76,9 +81,13 @@ btnDownEl.addEventListener("click", function () {
         newImage = imagesEl[indice + 1];
         oldAnteprima = divAnteprime[indice];
         newAnteprima = divAnteprime[indice + 1];
+        oldbord=anteprime[indice];
+        newbord=anteprime[indice+1];
 
     }
     indice++;
+    newbord.classList.add("border-blue");
+    oldbord.classList.remove("border-blue");
     oldAnteprima.classList.remove("effetto-anteprima");
     newAnteprima.classList.add("effetto-anteprima");
     oldImage.classList.remove("d-block");
@@ -90,6 +99,8 @@ btnDownEl.addEventListener("click", function () {
 
 btnUpEl.addEventListener("click", function () {
 
+    let oldbord;
+    let newbord;
     let oldAnteprima;
     let newAnteprima;
     let oldImage;
@@ -99,6 +110,9 @@ btnUpEl.addEventListener("click", function () {
         oldImage = imagesEl[0];
         oldAnteprima = divAnteprime[0];
         newAnteprima = divAnteprime[images.length - 1];
+        oldbord=anteprime[0];
+        newbord=anteprime[images.length - 1];
+        
         indice = images.length;
     }
     else {
@@ -106,10 +120,14 @@ btnUpEl.addEventListener("click", function () {
         newImage = imagesEl[indice - 1];
         oldAnteprima =divAnteprime[indice];
         newAnteprima =divAnteprime[indice - 1];
+        oldbord=anteprime[indice];
+        newbord=anteprime[indice- 1];
         
 
     }
     indice--;
+    newbord.classList.add("border-blue");
+    oldbord.classList.remove("border-blue");
     oldAnteprima.classList.remove("effetto-anteprima");
     newAnteprima.classList.add("effetto-anteprima");
     oldImage.classList.remove("d-block");

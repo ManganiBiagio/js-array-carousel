@@ -6,8 +6,8 @@ const images = [
     "img/05.webp"
 ]
 const imagesEl = [];
-const anteprime = [];
-const boxImagesEl = document.querySelector(".img-box");
+const divAnteprime = [];
+const boxImagesEl = document.querySelector(".carosel-box");
 const btnUpEl = document.querySelector(".btn-up");
 const btnDownEl = document.querySelector(".btn-down");
 const anteprimaImg = document.querySelector(".anteprima-box");
@@ -27,20 +27,26 @@ for (let i = 0; i < images.length; i++) {
     imgEl.alt = "";
     boxImagesEl.append(imgEl);
     imagesEl[i] = imgEl;
+    const divEffect=document.createElement("div");
+    const container=document.createElement("div");
+    container.classList.add("relative");
+
+    divEffect.classList.add("img-box");
+    
     const anteprimaEl = document.createElement("img");
     anteprimaEl.src = images[i];
+    anteprimaEl.classList.add( "anteprima-img");
     if (i === indice) {
-        anteprimaEl.classList.add("img-fluid", "anteprima-img", "img-active");
+        divEffect.classList.add("effetto-anteprima");
     }
-    else {
-        anteprimaEl.classList.add("img-fluid", "anteprima-img");
-    }
-
-    anteprimaEl.style.height = `calc( 100% / ${images.length} )`;
+    container.style.height = `calc( 100% / ${images.length} )`;
 
     anteprimaEl.alt = "";
-    anteprime[i] = anteprimaEl;
-    anteprimaImg.append(anteprimaEl);
+    divAnteprime[i] = divEffect;
+    
+    container.append(anteprimaEl)
+    container.append(divEffect);
+    anteprimaImg.append(container)
 
 
 }
@@ -61,20 +67,20 @@ btnDownEl.addEventListener("click", function () {
     if (indice === images.length - 1) {
         newImage = imagesEl[0];
         oldImage = imagesEl[images.length - 1];
-        oldAnteprima = anteprime[images.length - 1];
-        newAnteprima = anteprime[0];
+        oldAnteprima = divAnteprime[images.length - 1];
+        newAnteprima = divAnteprime[0];
         indice = -1;
     }
     else {
         oldImage = imagesEl[indice];
         newImage = imagesEl[indice + 1];
-        oldAnteprima = anteprime[indice];
-        newAnteprima = anteprime[indice + 1];
+        oldAnteprima = divAnteprime[indice];
+        newAnteprima = divAnteprime[indice + 1];
 
     }
     indice++;
-    oldAnteprima.classList.remove("img-active");
-    newAnteprima.classList.add("img-active");
+    oldAnteprima.classList.remove("effetto-anteprima");
+    newAnteprima.classList.add("effetto-anteprima");
     oldImage.classList.remove("d-block");
     oldImage.classList.add("d-none");
     newImage.classList.remove("d-none");
@@ -91,21 +97,21 @@ btnUpEl.addEventListener("click", function () {
     if (indice === 0) {
         newImage = imagesEl[images.length - 1];
         oldImage = imagesEl[0];
-        oldAnteprima = anteprime[0];
-        newAnteprima = anteprime[images.length - 1];
+        oldAnteprima = divAnteprime[0];
+        newAnteprima = divAnteprime[images.length - 1];
         indice = images.length;
     }
     else {
         oldImage = imagesEl[indice];
         newImage = imagesEl[indice - 1];
-        oldAnteprima = anteprime[indice];
-        newAnteprima = anteprime[indice - 1];
+        oldAnteprima =divAnteprime[indice];
+        newAnteprima =divAnteprime[indice - 1];
         
 
     }
     indice--;
-    oldAnteprima.classList.remove("img-active");
-    newAnteprima.classList.add("img-active");
+    oldAnteprima.classList.remove("effetto-anteprima");
+    newAnteprima.classList.add("effetto-anteprima");
     oldImage.classList.remove("d-block");
     oldImage.classList.add("d-none");
     newImage.classList.remove("d-none");

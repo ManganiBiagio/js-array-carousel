@@ -46,7 +46,7 @@ btnUpEl.addEventListener("click", function () {
     }
     else {
         oldImage= document.querySelector(`.img-box :nth-child(${indice})`);
-        newImage = document.querySelector(`.img-box :nth-child(${indice + 1})`);
+        newImage = document.querySelector(`.img-box :nth-child(${indice +1})`);
     }
 
 
@@ -66,17 +66,18 @@ btnDownEl.addEventListener("click", function () {
     indice--;
     let oldImage;
     let newImage;
-    if (indice === images.length) {
+    if (indice === -1 || indice ===0) {
         let indice1=1;
         let indice2=images.length;
-         oldImage = document.querySelector(`.img-box :nth-child(${indice2})`);
-         newImage = document.querySelector(`.img-box :nth-child(${indice1})`);
-         indice=0;
+         oldImage = document.querySelector(`.img-box :nth-child(${indice1})`);
+         newImage = document.querySelector(`.img-box :nth-child(${indice2})`);
+         indice=images.length;
     }
     else {
-        oldImage= document.querySelector(`.img-box :nth-child(${indice})`);
-        newImage = document.querySelector(`.img-box :nth-child(${indice + 1})`);
+        oldImage= document.querySelector(`.img-box :nth-child(${indice +1})`);
+        newImage = document.querySelector(`.img-box :nth-child(${indice  })`);
     }
+    
 
 
     oldImage.classList.remove("d-block");
